@@ -8,7 +8,24 @@ using namespace std;
 class Solution {
   public:
     void nearlySorted(vector<int>& arr, int k) {
-        sort(arr.begin(), arr.end());
+        priority_queue<int, vector<int>, greater<int>> pq;
+        int i = 0;
+        int n = arr.size();
+        while(i<=k && i<n){
+            pq.push(arr[i++]);
+        }
+        int j = 0;
+        while(i<n){
+            arr[j++] = pq.top();
+            pq.pop();
+            pq.push(arr[i++]);
+        }
+        while(j<n){
+            arr[j++] = pq.top();
+            pq.pop();
+        }
+        
+        
     }
 };
 
